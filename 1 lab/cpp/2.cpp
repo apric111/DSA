@@ -1,22 +1,18 @@
 #include <iostream>
-#include <cmath>
-#include <vector>
-using namespace std;
 
-int main(void) {
+int main(int argc, char* argv[]) {
 
     int n;
-    cin >> n;
-
-    vector<int> m(n);
+    std::cin >> n;
+    int m[n];
     for (int i = 0; i < n; i++) {
-        cin >> m[i];
+        std::cin >> m[i];
     }
 
     int x;
-    cin >> x;
+    std::cin >> x;
 
-    int temp = pow(10, 8);
+    int temp = INT_MAX;
     int res;
     
     for (int i : m) {
@@ -26,7 +22,7 @@ int main(void) {
         }
     }
 
-    cout << res << endl;
+    std::cout << res << std::endl;
 
     return 0;
 }

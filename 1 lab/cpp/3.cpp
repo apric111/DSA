@@ -1,16 +1,18 @@
 #include <iostream>
-#include <algorithm>
-using namespace std;
 
+int main(int argc, char* argv[]) {
 
-int main(void) {
+    char line[101];
+    std::cin >> line;
+    char res = 'a';
 
-    string line;
-    cin >> line;
+    for (int i = 0; line[i] != '\0'; i++) {
+        if (line[i] > res) {
+            res = line[i];
+        }
+    }
 
-    sort(line.begin(), line.end());
-
-    cout << line[line.length() - 1] << endl;
+    std::cout << res << std::endl;
 
     return 0;
 }

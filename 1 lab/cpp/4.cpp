@@ -1,15 +1,14 @@
 #include <iostream>
 #include <climits>
-using namespace std;
 
-int main(void) {
+int main(int argc, char* argv[]) {
     
     int n;
-    cin >> n;
+    std::cin >> n;
     
-    vector<int> m(n);
+    int m[n];
     for (int i = 0; i < n; i++) {
-        cin >> m[i];
+        std::cin >> m[i];
     }
 
     int min1 = INT_MAX;
@@ -23,7 +22,7 @@ int main(void) {
         }
     }
 
-    m.erase(m.begin() + index);
+    m[index] = INT_MAX;
 
     for (int i : m) {
         if (i < min2) {
@@ -31,7 +30,7 @@ int main(void) {
         }
     }
 
-    cout << min1 << " " << min2 << endl;
+    std::cout << min1 << " " << min2 << std::endl;
 
     return 0;
 }

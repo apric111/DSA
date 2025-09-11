@@ -1,15 +1,14 @@
 #include <iostream>
-using namespace std;
 
-int main(void) {
+int main(int argc, char* argv[]) {
 
     int n;
-    cin >> n;
-    vector<int> m(n);
+    std::cin >> n;
+    int m[n];
     for (int i = 0; i < n; i++) {
-        cin >> m[i];
+        std::cin >> m[i];
     }
-    int last = m.back();
+    int last = m[n - 1];
 
     for (int i = n - 2; i > -1; i -= 1) {
         m[i + 1] = m[i];
@@ -19,8 +18,9 @@ int main(void) {
     m[0] = last;
 
     for (int i : m) {
-        cout << i << " ";
+        std::cout << i << " ";
     }
+    std::cout << std::endl;
 
     return 0;
 }

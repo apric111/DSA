@@ -1,68 +1,58 @@
 #include <iostream>
-#include <numeric>
-using namespace std;
 
-int multi(vector<int> A, vector<int> B) {
-    vector<int> C;
-    for (int i = 0; i < A.size(); i++) {
-        C.push_back(A[i] * B[i]);
-    }
-    return accumulate(C.begin(), C.end(), 0);
-}
+int main(int argc, char* argv[]) {
 
-vector<vector<int>> roll(vector<vector<int>> A, int n, int m) {
-
-    vector<vector<int>> res;
-    vector<int> temp;
-
-    for (int j = 0; j < m; j++) {
-        temp.clear();
-        for (int i = 0; i < n; i++) {
-            temp.push_back(A[i][j]);
-        }
-        res.push_back(temp);
-    }
-
-    return res;
-}
-
-int main(void) {
-    int n, m, k;
-    cin >> n >> m >> k;
-    vector<vector<int>> A(n, vector<int>(m));
-    vector<vector<int>> B(m, vector<int>(k));
-    vector<vector<int>> C;
+    int n;
+    int m;
+    int k;
+    std::cin >> n >> m >> k;
+    int A[n][m];
+    int B[m][k];
+    int C[n][k];
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            cin >> A[i][j];
+            std::cin >> A[i][j];
         }
     }
 
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < k; j++) {
-            cin >> B[i][j];
+            std::cin >> B[i][j];
         }
     }
 
-    B = roll(B, m, k);
+    int temp[n];
+    int B_new[k][m];
 
-    vector<int> temp;
-    for (int a = 0; a < n; a++) {
-        temp.clear();
-        for (int b = 0; b < k; b++) {
-            temp.push_back(multi(A[a], B[b]));
+    for (int j = 0; j < k; j++) {
+        for (int i = 0; i < m; i++) {
+            temp[i] = B[i][j];
         }
-        C.push_back(temp);
+        
+        for (int x = 0; x < m; x++) {
+            B_new[j][x] = temp[x];
+        }
     }
 
-    for (vector<int> i : C) {
-        for (int j = 0; j < i.size(); j++) {
-            cout << i[j];
-            if (j != i.size() - 1) cout << " ";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < k; j++) {
+            int sum = 0;
+            for (int x = 0; x < m; x++) {
+                sum = sum + (A[i][x] * B_new[j][x]);
+            }
+            C[i][j] = sum;
         }
-        cout << endl;
     }
 
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < k; j++) {
+            std::cout << C[i][j];
+            if (j != k - 1) {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
     return 0;
 }
